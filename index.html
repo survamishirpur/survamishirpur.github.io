@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surva Mishirpur · Village of Joy</title>
+  <!-- Google Fonts for beautiful typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons (used in footer, subtle) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ---------- GLOBAL STYLES ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #fbf9f4;
+      color: #2d2a24;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ---------- HEADER / HERO ---------- */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&auto=format&fit=crop') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-content {
+      max-width: 900px;
+      padding: 2rem;
+      z-index: 2;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .hero h1 {
+      font-size: 5rem;
+      font-weight: 700;
+      text-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+    }
+
+    .hero h1 span {
+      display: block;
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      margin-top: 0.8rem;
+      color: #f7e7c8;
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      margin: 2rem 0 1.5rem;
+      font-weight: 400;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.2);
+      display: inline-block;
+      padding: 0.7rem 2rem;
+      border-radius: 50px;
+      backdrop-filter: blur(2px);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      background: #d4a373;
+      color: #1e1e1e;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn:hover {
+      background: #c08a5a;
+      transform: translateY(-5px);
+      box-shadow: 0 18px 28px rgba(0, 0, 0, 0.3);
+    }
+
+    /* ---------- SECTION GENERAL ---------- */
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 3.2rem;
+      margin-bottom: 0.8rem;
+      color: #3d2b1f;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-weight: 700;
+    }
+
+    .section-sub {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #6b4f3a;
+      margin-bottom: 3.5rem;
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .section-sub::before,
+    .section-sub::after {
+      content: "🌸";
+      margin: 0 10px;
+      opacity: 0.6;
+      font-size: 1rem;
+    }
+
+    /* ---------- IMAGE CARDS (fields, seasons) ---------- */
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .image-card {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #fff;
+      height: 340px;
+      position: relative;
+    }
+
+    .image-card:hover {
+      transform: scale(1.02) translateY(-8px);
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .image-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .image-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      color: #fff;
+      padding: 2rem 1.5rem 1.2rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* ---------- STORY SECTION ---------- */
+    .story-wrapper {
+      background: #f3ede4;
+      border-radius: 60px 60px 30px 30px;
+      padding: 3.5rem 3rem;
+      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1);
+      margin: 2rem 0;
+      border: 1px solid #e3d8cc;
+    }
+
+    .story-text {
+      font-size: 1.2rem;
+      line-height: 1.9;
+      color: #3a2e24;
+      font-weight: 400;
+      column-count: 2;
+      column-gap: 3rem;
+    }
+
+    .story-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    .story-text p:first-of-type::first-letter {
+      font-size: 4rem;
+      float: left;
+      line-height: 0.9;
+      margin-right: 12px;
+      color: #b47b4c;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      .story-text {
+        column-count: 1;
+      }
+    }
+
+    /* ---------- GRANDPARENTS & HOUSES ---------- */
+    .grandparents-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .gp-card {
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.1);
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s;
+    }
+
+    .gp-card img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s;
+    }
+
+    .gp-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .gp-caption {
+      padding: 1.3rem 1.8rem;
+      background: #fff8f0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #4a3729;
+      text-align: center;
+      border-top: 1px solid #eaded2;
+    }
+
+    .gp-caption i {
+      color: #b47b4c;
+      margin-right: 10px;
+    }
+
+    @media (max-width: 700px) {
+      .grandparents-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ---------- FESTIVALS SECTION ---------- */
+    .festivals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .festival-card {
+      border-radius: 30px;
+      overflow: hidden;
+      position: relative;
+      height: 380px;
+      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.15);
+      transition: all 0.4s;
+    }
+
+    .festival-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .festival-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s;
+    }
+
+    .festival-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .festival-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.1) 60%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem 1.5rem;
+      color: #fff;
+    }
+
+    .festival-overlay h3 {
+      font-size: 2.3rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .festival-overlay p {
+      font-size: 1rem;
+      opacity: 0.9;
+      letter-spacing: 0.5px;
+    }
+
+    /* ---------- GRAM PRADHAN WELCOME ---------- */
+    .welcome-section {
+      background: linear-gradient(135deg, #fff5e9 0%, #f7ebe0 100%);
+      border-radius: 80px 80px 40px 40px;
+      padding: 4rem 3rem;
+      margin: 4rem 0;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid #ebddce;
+      position: relative;
+    }
+
+    .welcome-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .welcome-img {
+      flex: 1 1 300px;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .welcome-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      min-height: 350px;
+    }
+
+    .welcome-text {
+      flex: 2 1 450px;
+    }
+
+    .welcome-text h2 {
+      font-size: 3rem;
+      margin-bottom: 1.2rem;
+      color: #3b2b1e;
+      font-weight: 700;
+    }
+
+    .welcome-text p {
+      font-size: 1.25rem;
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+      color: #403a33;
+      font-style: italic;
+    }
+
+    .signature {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: #8b5e3c;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+
+    /* ---------- GAMES SECTION ---------- */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .game-item {
+      background: #fff;
+      border-radius: 50px 50px 30px 30px;
+      padding: 1.8rem 1rem;
+      text-align: center;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border: 1px solid #f0e4d8;
+    }
+
+    .game-item:hover {
+      transform: translateY(-8px);
+      background: #fffaf4;
+      box-shadow: 0 22px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .game-item i {
+      font-size: 3.5rem;
+      color: #b47b4c;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .game-item h3 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: #3d2b1f;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+    }
+
+    .game-item p {
+      font-size: 1rem;
+      color: #6c5b4d;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: #2f261f;
+      color: #e9dacb;
+      padding: 2.5rem 0;
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    footer i {
+      color: #d4a373;
+      margin: 0 5px;
+    }
+
+    footer .fa-heart {
+      color: #e07a5f;
+    }
+
+    /* ---------- ANIMATIONS ---------- */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+      .hero h1 span {
+        font-size: 1.5rem;
+        letter-spacing: 3px;
+      }
+      .section-title {
+        font-size: 2.5rem;
+        white-space: normal;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
+      }
+      .welcome-section {
+        padding: 2.5rem 1.5rem;
+      }
+      .welcome-text h2 {
+        font-size: 2.2rem;
+      }
+      .story-wrapper {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HERO / HEADER ========== -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Surva Mishirpur <span>Pratapgarh · 230306</span></h1>
+      <p>Where every grain tells a story, every festival echoes joy</p>
+      <a href="#welcome" class="btn">Explore our village</a>
+    </div>
+  </header>
+
+  <!-- ========== SEASONAL FIELDS / NATURE ========== -->
+  <section id="nature">
+    <div class="container">
+      <h2 class="section-title">Fields · Trees · Ponds</h2>
+      <div class="section-sub">The living canvas of Surva Mishirpur</div>
+      <div class="image-grid">
+        <div class="image-card">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&auto=format&fit=crop" alt="Golden wheat fields">
+          <div class="image-caption">Golden wheat · Rabi harvest</div>
+        </div>
+        <div class="image-card">
+          <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800&auto=format&fit=crop" alt="Lush green paddy fields">
+          <div class="image-caption">Emerald paddy · Monsoon magic</div>
+        </div>
+        <div class="image-card">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop" alt="Lotus pond">
+          <div class="image-caption">Lotus pond · Serenity</div>
+        </div>
+        <div class="image-card">
+          <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&auto=format&fit=crop" alt="Banyan and neem trees">
+          <div class="image-caption">Ancient trees · Cool shade</div>
+        </div>
+        <div class="image-card">
+          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&auto=format&fit=crop" alt="Flowers in bloom">
+          <div class="image-caption">Wildflowers · Spring blush</div>
+        </div>
+        <div class="image-card">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop" alt="Village pond reflection">
+          <div class="image-caption">Pond mirror · Sunrise</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STORY OF HAPPY & HEALTHY LIFE ========== -->
+  <section id="story">
+    <div class="container">
+      <h2 class="section-title">A Happy & Healthy Life</h2>
+      <div class="section-sub">The untold story of our village</div>
+      <div class="story-wrapper">
+        <div class="story-text">
+          <p>In the heart of Pratapgarh, where the morning sun first kisses the wheat fields, Surva Mishirpur wakes up to the sound of temple bells and the laughter of children. Life here is not measured by clocks but by the rhythm of the seasons—the sowing of paddy, the blooming of lotus, the fragrance of ripe mangoes.</p>
+          <p>Every household has a courtyard where grandmothers string marigolds and grandfathers narrate tales of the freedom struggle. The village is a big, extended family. Health is not just the absence of illness; it is the glow of fresh milk, the sweetness of jaggery, and the joy of shared meals under the neem tree.</p>
+          <p>Children run barefoot through the fields, climbing guava trees and swimming in the pond. The air is pure, the water sweet, and the soil fertile. It’s a place where no one sleeps hungry, and no elder is lonely. The village well remains a meeting point, and the chowpal (community space) buzzes with laughter and gossip.</p>
+          <p>Our lifestyle is simple yet rich. We grow our own vegetables, churn our own butter, and celebrate every small victory. The bond between generations is unbreakable—grandparents teach traditional games, while youngsters help with modern farming. This is the secret of our happy, healthy life.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GRANDPARENTS & VILLAGE HOUSES ========== -->
+  <section id="grandparents">
+    <div class="container">
+      <h2 class="section-title">Grandparents & Our Homes</h2>
+      <div class="section-sub">Wisdom, warmth and earthen walls</div>
+      <div class="grandparents-grid">
+        <div class="gp-card">
+          <img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=800&auto=format&fit=crop" alt="Indian grandmother">
+          <div class="gp-caption"><i class="fas fa-heart"></i> Dadi Maa · Storyteller</div>
+        </div>
+        <div class="gp-card">
+          <img src="https://images.unsplash.com/photo-1566616213894-2d4e1baee5d8?w=800&auto=format&fit=crop" alt="Indian grandfather">
+          <div class="gp-caption"><i class="fas fa-hand-holding-heart"></i> Baba · Field guardian</div>
+        </div>
+        <div class="gp-card">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop" alt="Traditional village house">
+          <div class="gp-caption"><i class="fas fa-home"></i> Old brick house · 1940</div>
+        </div>
+        <div class="gp-card">
+          <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?w=800&auto=format&fit=crop" alt="Rural house with courtyard">
+          <div class="gp-caption"><i class="fas fa-tree"></i> Courtyard · Tulsi plant</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FESTIVALS ========== -->
+  <section id="festivals">
+    <div class="container">
+      <h2 class="section-title">Festivals of Light & Love</h2>
+      <div class="section-sub">Diwali · Holi · Raksha Bandhan · Janmashtami</div>
+      <div class="festivals-grid">
+        <div class="festival-card">
+          <img src="https://images.unsplash.com/photo-1604423043492-41303788e7a9?w=800&auto=format&fit=crop" alt="Diwali diyas">
+          <div class="festival-overlay">
+            <h3>Diwali</h3>
+            <p>Rows of diyas, rangoli, and the sweet aroma of gujiya.</p>
+          </div>
+        </div>
+        <div class="festival-card">
+          <img src="https://images.unsplash.com/photo-1576089172869-4f5f6f315620?w=800&auto=format&fit=crop" alt="Holi colors">
+          <div class="festival-overlay">
+            <h3>Holi</h3>
+            <p>Colors of joy, unity, and forgiveness.</p>
+          </div>
+        </div>
+        <div class="festival-card">
+          <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&auto=format&fit=crop" alt="Raksha Bandhan rakhi">
+          <div class="festival-overlay">
+            <h3>Raksha Bandhan</h3>
+            <p>Threads of love between brothers and sisters.</p>
+          </div>
+        </div>
+        <div class="festival-card">
+          <img src="https://images.unsplash.com/photo-1561489413-985b06da5bee?w=800&auto=format&fit=crop" alt="Krishna Janmashtami">
+          <div class="festival-overlay">
+            <h3>Krishna Janmashtami</h3>
+            <p>Midnight bhajans, jhoola, and makhan-mishri.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GRAM PRADHAN WELCOME ========== -->
+  <section id="welcome">
+    <div class="container">
+      <div class="welcome-section">
+        <div class="welcome-content">
+          <div class="welcome-img">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop" alt="Gram Pradhan (village head)">
+          </div>
+          <div class="welcome-text">
+            <h2>Welcome to Surva Mishirpur</h2>
+            <p>“On behalf of every farmer, every mother, and every child of Surva Mishirpur, I invite you to experience the soul of rural India. Our fields are green, our hearts are warm, and our doors are always open. Come, be a part of our festivals, taste our home-cooked food, and feel the peace that only a village can give. You will leave with memories—and perhaps a bit of our soil on your feet.”</p>
+            <div class="signature">— Sri Ramakant Singh, Gram Pradhan</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GAMES ========== -->
+  <section id="games">
+    <div class="container">
+      <h2 class="section-title">Village Games</h2>
+      <div class="section-sub">Cricket · Kabaddi · Hide & Seek · Marbles</div>
+      <div class="games-grid">
+        <div class="game-item">
+          <i class="fas fa-baseball-ball"></i>
+          <h3>Cricket</h3>
+          <p>Matches on the fallow field, with a wooden bat and tennis ball.</p>
+        </div>
+        <div class="game-item">
+          <i class="fas fa-running"></i>
+          <h3>Kabaddi</h3>
+          <p>Raiders and stoppers, dust flying, and the chant of “Kabaddi, Kabaddi!”</p>
+        </div>
+        <div class="game-item">
+          <i class="fas fa-eye-slash"></i>
+          <h3>Hide & Seek</h3>
+          <p>Behind the haystacks and mango trees, laughter echoes.</p>
+        </div>
+        <div class="game-item">
+          <i class="fas fa-circle"></i>
+          <h3>Marbles</h3>
+          <p>Flick of the thumb, aim at the hole — a game of precision.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="container">
+      <p>Made with <i class="fas fa-heart"></i> for Surva Mishirpur · Pratapgarh, Uttar Pradesh 230306</p>
+      <p style="margin-top: 0.8rem; font-size: 0.9rem; opacity: 0.7;">© 2025 · Showcasing the beauty of rural India</p>
+    </div>
+  </footer>
+
+  <!-- small script for smooth anchor scrolling (optional) -->
+  <script>
+    (function() {
+      // Smooth scroll for anchor links (already via CSS, but just a fallback)
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
