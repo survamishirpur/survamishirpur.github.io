@@ -51,7 +51,48 @@
       color: #fff;
       box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.35);
     }
+/* ---------- LANGUAGE TOGGLE ---------- */
+.lang-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
 
+.lang-toggle button {
+  padding: 0.7rem 1.5rem;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.lang-toggle button:hover {
+  background: #d4a373;
+  color: #1e1e1e;
+  border-color: #d4a373;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 600px) {
+  .lang-toggle {
+    top: 12px;
+    right: 12px;
+  }
+  .lang-toggle button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
     .hero-content {
       max-width: 900px;
       padding: 2rem;
@@ -517,6 +558,10 @@
   <!-- ========== HERO / HEADER ========== -->
   <header class="hero">
     <div class="hero-content">
+      <!-- Language Toggle Button -->
+<div class="lang-toggle">
+  <button id="langBtn" onclick="toggleLanguage()">हिंदी</button>
+</div>
       <h1>Surva Mishirpur <span>Pratapgarh · 230306</span></h1>
       <p>Where every grain tells a story, every festival echoes joy</p>
       <a href="#welcome" class="btn">Explore our village</a>
@@ -708,7 +753,29 @@
           }
         });
       });
-    })();
+    })();/* ---------- LANGUAGE TOGGLE FUNCTION ---------- */
+let currentLang = 'en';
+
+function toggleLanguage() {
+  const elements = document.querySelectorAll('[data-en][data-hi]');
+  currentLang = currentLang === 'en' ? 'hi' : 'en';
+
+  elements.forEach(el => {
+    el.textContent = el.getAttribute(`data-${currentLang}`);
+  });
+
+  // Update button label
+  const btn = document.getElementById('langBtn');
+  btn.textContent = currentLang === 'en' ? 'हिंदी' : 'English';
+
+  // Optional: change font for Hindi for better readability
+  document.body.style.fontFamily = currentLang === 'hi'
+    ? "'Quicksand', 'Noto Sans Devanagari', sans-serif"
+    : "'Quicksand', sans-serif";
+
+  // Update HTML lang attribute (good for accessibility/SEO)
+  document.documentElement.lang = currentLang;
+}
   </script>
 </body>
 </html>
